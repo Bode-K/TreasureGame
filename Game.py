@@ -17,21 +17,47 @@ Y = [255, 255, 0] # yellow
 G = [0, 255, 0] # green
 W = [255, 255, 255] # white
 
-coinx = randint(0,7)
-coiny = randint(0,7)
-print(coinx, coiny)
+score = 0
 
-sense.set_pixel(coinx, coiny, Y)
-sleep(2)
-sense.clear()
+for turns in range(5):
 
-x = randint(0,7)
-y = randint(0,7)
-sense.set_pixel(x, y, W)
+  coinx = randint(0,7)
+  coiny = randint(0,7)
+  print(coinx, coiny)
 
-while True:
+  sense.set_pixel(coinx, coiny, Y)
+  sleep(2)
+  sense.clear()
+
+  x = randint(0,7)
+  y = randint(0,7)
+  sense.set_pixel(x, y, W)
+
+
+  while True:
+  
     e = wait_for_move()
+    
+    if e.direction == DIRECTION_MIDDLE:
 
+        if x == coinx and y == coiny:
+            sense.set_pixel(x, y, G)
+            score += 1
+
+        else:
+            sense.set_pixel(x, y, R)
+
+             
+
+        sleep(1)
+        sense.clear
+        ()
+
+
+        break;
+
+
+             
     sense.clear()
     if e.direction == DIRECTION_UP and y > 0:
         y = y - 1
@@ -39,30 +65,16 @@ while True:
         y = y + 1
     elif e.direction == DIRECTION_LEFT and x > 0:
         x = x - 1
-    elif e.direction == DIRECTION_RIGHT and x < 7:
+    elif e.direction == DIRECTION_RIGHT and x < 7:  
         x = x + 1
 
     sense.set_pixel(x, y, W)
 
-while True:
-    e = wait_for_move()
-    if e.direction == DIRECTION_MIDDLE:
+sense.show_message("Score: " + str(score))
 
-        if x == coinx and y == coiny:
-            sense.set_pixel(x, y, G)
-        else:
-            sense.set_pixel(x, y, R)
+ 
 
-        sleep(1)
-        sense.clear()
-        break;
-
-    sense.clear()
-
-    if e.drection == DIRECTION_UP and y > 0:
-        y = y - 1
-    elif e.direction == DIRECTION_DOWN and y < 7:
-        y = y + 1
+        
 
 
 

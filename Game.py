@@ -5,6 +5,7 @@ from random import randint
 sense = SenseHat()
 sense.clear()
 
+sense.show_message("Level 1")
 # Just return the actions we are interested in
 def wait_for_move():
   while True:
@@ -33,7 +34,6 @@ for turns in range(5):
   y = randint(0,7)
   sense.set_pixel(x, y, W)
 
-
   while True:
   
     e = wait_for_move()
@@ -44,14 +44,16 @@ for turns in range(5):
             sense.set_pixel(x, y, G)
             score += 1
 
+
+
         else:
             sense.set_pixel(x, y, R)
 
              
-
-        sleep(1)
-        sense.clear
-        ()
+      
+        sleep(1.25)
+        sense.clear()
+        sleep(0.5)
 
 
         break;
@@ -71,11 +73,25 @@ for turns in range(5):
     sense.set_pixel(x, y, W)
 
 sense.show_message("Score: " + str(score))
+if score == 5:
+  sense.show_message("Level 2")
+    while True:
+    e = sense.stick.wait_for_event()
+    if e.action != ACTION_RELEASED:
+      return e
 
- 
+  for turns in range(5):
 
-        
+    coinx = randint(0,7)
+    coiny = randint(0,7)
+    print(coinx, coiny)
 
+    sense.set_pixel(coinx, coiny, Y)
+    sleep(2)
+    sense.clear(Y)
+    sleep(1.5)
+    sense.clear()
 
-
-  
+    x = randint(0,7)
+    y = randint(0,7)
+    sense.set_pixel(x, y, W)

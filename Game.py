@@ -253,7 +253,7 @@ if score == 15:
       print(coinx, coiny)
 
       sense.set_pixel(coinx, coiny, Y)
-      sleep(0.25)
+      sleep(0.3)
       sense.clear()
     rainbow = [
       R, R, R, R, R, R, R, R,
@@ -345,7 +345,6 @@ if score == 15:
             
 else:
   sense.show_message("You Lose")
-
 
 if score == 20:
   sense.show_message("Level 5")
@@ -476,7 +475,10 @@ if score == 20:
 
       sense.set_pixel(x, y, W)
   sense.show_message("Score: " + str(score))
-  sense.show_message("You Win!")
+  if score == 25:
+    sense.show_message("You Win!")
+  else:
+    sense.show_message("You Lose")
   sense.set_pixels(rainbow)
             
 else:
